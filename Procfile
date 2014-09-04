@@ -1,1 +1,1 @@
-web: bin/hubot -a irc -n walibot
+web: bin/hubot -a hipchat -n walibot
