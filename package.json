@@ -24,7 +24,9 @@
     "hubot": ">= 2.6.0 < 3.0.0",
     "hubot-hipchat": "^2.7.5",
     "hubot-irc": "^0.2.7",
-    "hubot-scripts": ">= 2.5.0 < 3.0.0"
+    "hubot-scripts": ">= 2.5.0 < 3.0.0",
+    "request": "2.42.0",
+    "cheerio": "0.17.0"
   },
   "engines": {
     "node": ">= 0.8.x",
