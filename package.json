@@ -26,7 +26,9 @@
     "hubot-irc": "^0.2.7",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "request": "2.42.0",
-    "cheerio": "0.17.0"
+    "cheerio": "0.17.0",
+    "htmlparser": ">=1.7.7",
+    "soupselect": ">=0.2.0"
   },
   "engines": {
     "node": ">= 0.8.x",
