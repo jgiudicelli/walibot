@@ -17,13 +17,13 @@ flip = require 'flip'
 
 module.exports = (robot) ->
 
-  robot.respond /(rage )?flip( .*)?$/i, (msg) ->
+  robot.respond /(rage )?(throw|flip)( .*)?$/i, (msg) ->
     if msg.match[1] == 'rage '
       guy = '(ノಠ益ಠ)ノ彡'
     else
       guy = '(╯°□°）╯︵'
 
-    toFlip = (msg.match[2] || '').trim()
+    toFlip = (msg.match[3] || '').trim()
 
     if toFlip == 'me'
       toFlip = msg.message.user.name
