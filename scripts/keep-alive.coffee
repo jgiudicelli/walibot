@@ -61,7 +61,9 @@ module.exports = (robot) ->
       keepAlive()
     ), frequency
 
-  keepAlive()
+  # deactivate ping to comply with heroku new rules that require
+  # a free app to sleeo 6 hours per day
+  # keepAlive()
 
   robot.respond /keep (.*) alive$/i, (msg) ->
     url = msg.match[1]
