@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   hubot beer me - Grab me a beer
+#   None
 #
 # Author:
 #  jg
@@ -19,4 +19,4 @@ cheat = [
 
 module.exports = (robot) ->
   robot.hear /.*(buff|pat).*/i, (msg) ->
-    msg.send msg cheat[0]
+    msg.send cheat[0]
