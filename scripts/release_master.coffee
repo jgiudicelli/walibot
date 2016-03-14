@@ -1,5 +1,5 @@
 # Description:
-#   Manage your links. Links get stored in the robot brain.
+#   Manage your release masters. release masters get stored in the robot brain.
 #
 # Dependencies:
 #   "xml2js": "0.1.14"
@@ -17,45 +17,55 @@
 module.exports = (robot) ->
 
   robot.respond /add release master (.+)/i, (msg) ->
-    handle = msg.match[1]
-    link = new Handle robot
+    if msg.message.user.mention_name.match(/therealJG/i)
+      handle = msg.match[1].replace /^\s+|\s+$/g, ""
+      link = new Handle robot
 
-    link.add handle, (err, message) ->
-      if err?
-        msg.reply "I have a vague memory of hearing about that handle sometime in the past."
-      else
-        msg.reply "I've stuck that handle into my robot brain." 
+      link.add handle, (err, message) ->
+        if err?
+          msg.reply "I have a vague memory of hearing about that handle sometime in the past."
+        else
+          msg.reply "I've stuck that handle into my robot brain." 
+    else
+      msg.reply '(poo)'
 
   robot.respond /list release master/i, (msg) ->
     handle = new Handle robot
 
     handle.list (err, message) ->
       if err?
-        msg.reply "Links? What links? I don't remember any links."
+        msg.reply "Handles? What handles? I don't remember any handles."
       else
         msg.reply message
 
   robot.respond /remove release master (.+)/i, (msg) ->
-    handle = msg.match[1]
-    link = new Handle robot
+    if msg.message.user.mention_name.match(/therealJG/i)
+      handle = msg.match[1].replace /^\s+|\s+$/g, ""
+      link = new Handle robot
 
-    link.remove handle, (err, message) ->
-      if err?
-        console.log "#{err}"
+      link.remove handle, (err, message) ->
+        if err?
+          console.log "#{err}"
+        else
+          msg.reply message
+    else
+      msg.reply '(poo)'
 
 # Classes
 
 class Handle
   constructor: (robot) ->
-    robot.brain.data.handle ?= []
-    @handle_ = robot.brain.data.handle
+    robot.brain.data.handles ?= []
+    @handles_ = robot.brain.get('handles')
+
+  all: (handle) ->
+    if handle
+      @handles_.push handle
+    else
+      @handles_
 
   add: (handle, callback) ->
-    result = []
-    @all().forEach (entry) ->
-      if entry
-        result.push handle
-    if result.length > 0
+    if handle in @all()
       callback "handle already exists"
     else
       @all handle
@@ -73,9 +83,14 @@ class Handle
 
   remove: (handle, callback) ->
     if handle
-      obsolete = handle
-      handle.delete
-      callback null, "deleted " + obsolete
+      try
+        empt = []
+        newArr = @handles_.filter (word) -> word isnt handle
+        robot.brain.set 'handles', newArr
+        @handles_ = newArr
+        callback null, "deleted"
+      catch error
+        callback error, null
     else
       callback "No results found"
 
