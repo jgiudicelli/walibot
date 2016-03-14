@@ -74,7 +74,7 @@ class Handle
   remove: (handle, callback) ->
     if handle
       obsolete = handle
-      delete handle
+      handle.delete
       callback null, "deleted " + obsolete
     else
       callback "No results found"
