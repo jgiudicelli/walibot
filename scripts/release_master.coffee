@@ -16,7 +16,7 @@
 
 module.exports = (robot) ->
 
-  robot.respond /add release master (@\S+)/i, (msg) ->
+  robot.respond /add release master (.+)/i, (msg) ->
     handle = msg.match[1]
     link = new Handle robot
 
@@ -35,7 +35,7 @@ module.exports = (robot) ->
       else
         msg.reply message
 
-  robot.respond /remove release master (@\S+)/i, (msg) ->
+  robot.respond /remove release master (.+)/i, (msg) ->
     handle = msg.match[1]
     link = new Handle robot
 
@@ -74,7 +74,7 @@ class Handle
   remove: (handle, callback) ->
     if handle
       obsolete = handle
-      delete handle
+      handle.delete
       callback null, "deleted " + obsolete
     else
       callback "No results found"
