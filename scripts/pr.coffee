@@ -8,9 +8,12 @@
 gtoken = process.env.HUBOT_TOKEN
 room = process.env.HUBOT_HIPCHAT_ROOMS
 url = "https://api.github.com/repos/Liaison-Intl/WebAdMIT/issues?labels=Ready%20for%20Release%20Master"
-interval = 1000 * 600 # sec
+interval = 1000 * 60 * 30 # msec
 
 module.exports = (robot) ->
+  now = new Date()
+  hour = now.getHours()
+  console.log(hour)
   setInterval () ->
     robot.http(url)
       .header('Accept', 'application/json')
@@ -31,7 +34,7 @@ module.exports = (robot) ->
     new_interval = msg.match[1]
     handles = robot.brain.get('handles')
     user = '@'+msg.message.user.mention_name
-    console.log "#{new_interval} #{user} #{handles}"
+    # console.log "#{new_interval} #{user} #{handles}"
     if user in handles
       interval = 1000 * new_interval
       msg.reply 'updated interval to ' + new_interval + ' seconds'
