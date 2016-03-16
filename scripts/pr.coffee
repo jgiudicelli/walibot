@@ -26,8 +26,8 @@ module.exports = (robot) ->
           else
             data = JSON.parse(body)
             prs = data.map (pr) -> pr.html_url
-            if prs?.length > 0
-              handles = robot.brain.get('handles')
+            handles = robot.brain.get('handles')
+            if prs?.length > 0 && handles?.length > 0
               resp = prs.toString()
               robot.messageRoom room, "#{handles} #{resp}"
   , interval
