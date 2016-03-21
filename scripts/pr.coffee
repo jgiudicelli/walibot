@@ -25,11 +25,12 @@ module.exports = (robot) ->
             console.log "#{err} #{body}"
           else
             data = JSON.parse(body)
-            prs = data.map (pr) -> pr.html_url
-            handles = robot.brain.get('handles')
-            if prs?.length > 0 && handles?.length > 0
-              resp = prs.toString()
-              robot.messageRoom room, "#{handles} #{resp}"
+            if data?.length > 0
+              prs = data.map (pr) -> pr.html_url
+              handles = robot.brain.get('handles')
+              if prs?.length > 0 && handles?.length > 0
+                resp = prs.toString()
+                robot.messageRoom room, "#{handles} #{resp}"
   , interval
 
   # robot.respond /reset msg interval (\d+)/i, (msg) ->
