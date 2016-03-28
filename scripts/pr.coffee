@@ -8,7 +8,7 @@
 gtoken = process.env.HUBOT_TOKEN
 room = process.env.HUBOT_HIPCHAT_ROOMS
 url = "https://api.github.com/repos/Liaison-Intl/WebAdMIT/issues?labels=Ready%20for%20Release%20Master"
-interval = 1000 * 60 * 30 # msec
+interval = 1000 * 60 * 60 # msec * sec * mn
 
 module.exports = (robot) ->
   BUSINESS_DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
