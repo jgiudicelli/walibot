@@ -32,7 +32,7 @@ module.exports = (robot) ->
                 prs = data.map (pr) -> pr.html_url
                 handles = robot.brain.get('handles')
                 if prs?.length > 0 && handles?.length > 0
-                  resp = prs.toString()
+                  resp = prs.join("\n")
                   robot.messageRoom room, "#{handles} #{resp}"
   , INTERVAL
 
