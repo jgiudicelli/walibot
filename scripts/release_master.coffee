@@ -17,39 +17,33 @@
 module.exports = (robot) ->
 
   robot.respond /add release master (.+)/i, (msg) ->
-    if msg.message.user.mention_name.match(/therealJG/i)
-      handle = msg.match[1].replace /^\s+|\s+$/g, ""
-      link = new Handle robot
+    handle = msg.match[1].replace /^\s+|\s+$/g, ""
+    link = new Handle robot
 
-      link.add handle, (err, message) ->
-        if err?
-          msg.reply "I have a vague memory of hearing about that handle sometime in the past."
-        else
-          msg.reply "I've stuck that handle into my robot brain." 
-    else
-      msg.reply '(poo)'
+    link.add handle, (err, message) ->
+      if err?
+        msg.reply "I have a vague memory of hearing about that release master sometime in the past."
+      else
+        msg.reply "I've stuck that release master into my robot brain." 
 
   robot.respond /list release master/i, (msg) ->
     handle = new Handle robot
 
     handle.list (err, message) ->
       if err?
-        msg.reply "Handles? What handles? I don't remember any handles."
+        msg.reply "release masters? What release masters? I don't remember any release masters."
       else
         msg.reply message
 
   robot.respond /remove release master (.+)/i, (msg) ->
-    if msg.message.user.mention_name.match(/therealJG/i)
-      handle = msg.match[1].replace /^\s+|\s+$/g, ""
-      link = new Handle robot
+    handle = msg.match[1].replace /^\s+|\s+$/g, ""
+    link = new Handle robot
 
-      link.remove handle, (err, message) ->
-        if err?
-          console.log "#{err}"
-        else
-          msg.reply message
-    else
-      msg.reply '(poo)'
+    link.remove handle, (err, message) ->
+      if err?
+        console.log "#{err}"
+      else
+        msg.reply message
 
 # Classes
 
@@ -66,20 +60,20 @@ class Handle
 
   add: (handle, callback) ->
     if handle in @all()
-      callback "handle already exists"
+      callback "release master already exists"
     else
       @all handle
-      callback null, "handle added"
+      callback null, "release master added"
 
   list: (callback) ->
     if @all().length > 0
-      resp_str = "These are the handles I'm remembering:\n\n"
+      resp_str = "These are the release masters I'm remembering:\n\n"
       for handle in @all()
         if handle
           resp_str += handle
       callback null, resp_str
     else
-      callback "No handles exist"
+      callback "No release masters exist"
 
   remove: (handle, callback) ->
     if handle
