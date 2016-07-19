@@ -11,7 +11,7 @@ urls = ["https://api.github.com/repos/Liaison-Intl/WebAdMIT/issues?labels=Ready%
 "https://api.github.com/repos/Liaison-Intl/webadmit_cas3_etl_loader/issues?labels=Ready%20for%20Release%20Master",
 "https://api.github.com/repos/Liaison-Intl/webadmit_cas3_etl_transformer/issues?labels=Ready%20for%20Release%20Master"]
 BUSINESS_DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-INTERVAL = 1000 * 60 * 60 * 5 # msec * sec * mn
+INTERVAL = 1000 * 60 * 60 * 3 # msec * sec * mn
 
 module.exports = (robot) ->
   setInterval () ->
