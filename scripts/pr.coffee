@@ -6,7 +6,7 @@
 #
 
 gtoken = process.env.HUBOT_TOKEN
-room = process.env.HUBOT_HIPCHAT_ROOMS
+room = process.env.HUBOT_HIPCHAT_DEPLOY_ROOM
 urls = ["https://api.github.com/repos/Liaison-Intl/WebAdMIT/issues?labels=Ready%20for%20Release%20Master",
 "https://api.github.com/repos/Liaison-Intl/webadmit_cas3_etl_loader/issues?labels=Ready%20for%20Release%20Master",
 "https://api.github.com/repos/Liaison-Intl/webadmit_cas3_etl_transformer/issues?labels=Ready%20for%20Release%20Master"]
