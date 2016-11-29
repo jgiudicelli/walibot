@@ -11,14 +11,14 @@ urls = ["https://api.github.com/repos/Liaison-Intl/WebAdMIT/issues?labels=Ready%
 "https://api.github.com/repos/Liaison-Intl/webadmit_cas3_etl_loader/issues?labels=Ready%20for%20Release%20Master",
 "https://api.github.com/repos/Liaison-Intl/webadmit_cas3_etl_transformer/issues?labels=Ready%20for%20Release%20Master"]
 BUSINESS_DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-INTERVAL = 1000 * 60 * 60 * 3 # msec * sec * mn
+INTERVAL = 1000 * 60 * 60 * 2 # msec * sec * mn
 
 module.exports = (robot) ->
   setInterval () ->
     now = new Date()
     day = now.getDay() - 1
     hour = now.getHours()
-    if BUSINESS_DAY_NAMES[day] && hour >= 13 && hour <= 19
+    if BUSINESS_DAY_NAMES[day] && hour >= 14 && hour <= 22
       for url in urls
         robot.http(url)
           .header('Accept', 'application/json')
